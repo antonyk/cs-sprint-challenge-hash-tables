@@ -6,9 +6,37 @@ class Ticket:
 
 
 def reconstruct_trip(tickets, length):
-    """
-    YOUR CODE HERE
-    """
-    # Your code here
+
+    lookup = {}
+    route = []
+    # build the lookup
+    for _, v in enumerate(tickets):
+        lookup[v.source] = v.destination
+
+    flight = lookup['NONE']
+    while flight != 'NONE':
+        route.append(flight)
+        flight = lookup[flight]
+
+    route.append('NONE')
 
     return route
+
+
+if __name__ == "__main__":
+
+    tickets = [
+        Ticket("PIT", "ORD"),
+        Ticket("XNA", "SAP"),
+        Ticket("SFO", "BHM"),
+        Ticket("FLG", "XNA"),
+        Ticket("NONE", "LAX"),
+        Ticket("LAX", "SFO"),
+        Ticket("SAP", "SLC"),
+        Ticket("ORD", "NONE"),
+        Ticket("SLC", "PIT"),
+        Ticket("BHM", "FLG")
+    ]
+
+
+    print(reconstruct_trip(tickets, 10))
