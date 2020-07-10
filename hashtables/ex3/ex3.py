@@ -7,14 +7,16 @@ def intersection(arrays):
     if len(arrays) > 0:
         shortest = arrays[0]
     for _, v in enumerate(arrays):
-        shortest = v if len(v) < len(shortest) else shortest
+        if len(v) < len(shortest):
+            shortest = v
 
     # populate base cache, based on the shortest number list
     for num in shortest:
         base_cache[num] = None
 
+    # find repeating numbers
     for _, v in enumerate(arrays):
-        if v != shortest:
+        if v is not shortest:
             new_cache = {}
             for num in v:
                 if num in base_cache:
