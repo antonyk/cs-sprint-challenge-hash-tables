@@ -1,12 +1,19 @@
 # Your code here
 
-
-
 def finder(files, queries):
-    """
-    YOUR CODE HERE
-    """
-    # Your code here
+
+    lookup = {}
+    for _, v in enumerate(files):
+        f = v.split('/')
+        if f[-1] in lookup:
+            lookup[f[-1]].append(v)
+        else:
+            lookup[f[-1]] = [v]
+
+    result = []
+    for _, v in enumerate(queries):
+        if v in lookup:
+            result.extend(lookup[v])
 
     return result
 
