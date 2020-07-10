@@ -1,8 +1,12 @@
 def has_negatives(a):
-    """
-    YOUR CODE HERE
-    """
-    # Your code here
+
+    lookup = {}
+    result = []
+    for _, v in enumerate(a):
+        if -v in lookup:
+            result.append(abs(v))
+        else:
+            lookup[v] = None
 
     return result
 
